@@ -1,0 +1,233 @@
+warn("Anti afk running")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+warn("Anti afk ran")
+game:GetService("VirtualUser"):CaptureController()
+game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+end)
+local function getrarity(value)
+   local rarity = nil
+   for i,v in pairs(require(game:GetService("ReplicatedStorage").CloudFrameShared.Rodux.Reducer.gameValues.rarity)) do
+   if type(v) == "table" and v.displayName == value  then
+   rarity = v.id
+   end
+   end
+   return rarity
+   end
+   local function getSize(value)
+      for i,v in pairs(require(game:GetService("ReplicatedStorage").CloudFrameShared.Rodux.Reducer.gameValues.fishSizes)) do
+      if type(v) == "table" and v.displayName == value then
+      size = v.id
+      end
+      end
+      return size
+      end
+      local function getMutation(value)
+         for i,v in pairs(require(game:GetService("ReplicatedStorage").CloudFrameShared.Rodux.Reducer.gameValues.fishMutations)) do
+         if type(v) == "table" and v.displayName == value or type(v) == "table" and i == value then
+      size = v.id
+      end
+      end
+      return size
+      end
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/main/ui%20libs2", true))()
+local example = library:CreateWindow({
+  text = "Fishing Simulator"
+})
+example:AddLabel("      Select Fishing Method", function(state)
+end)
+example:AddDropdown({"Method 1","Method 2"},function(state) 
+    getfenv().fmethod = state
+   
+end)
+example:AddToggle("Auto Fish", function(state)
+   getfenv().fish = (state and true or false)
+   while getfenv().fish do
+      task.wait()
+      local chr = game.Players.LocalPlayer.Character
+      if not chr:FindFirstChildOfClass("Tool") or chr:FindFirstChildOfClass("Tool") and chr:FindFirstChildOfClass("Tool"):GetAttribute("type") ~= "Rods" then
+      local plr = game.Players.LocalPlayer.UserId
+      for i,v in pairs(game:GetService("ReplicatedStorage").ToolsCache[plr]:GetChildren()) do
+          if v:GetAttribute("type") == "Rods" then
+      rod = v
+          end
+          end
+        game:GetService("ReplicatedStorage").CloudFrameShared.DataStreams.EquipTool:InvokeServer(rod)
+        
+         end
+            if  getfenv().fmethod == "Method 1" then
+      game:GetService("ReplicatedStorage"):WaitForChild("CloudFrameShared"):WaitForChild("DataStreams"):WaitForChild("CastFishingLine"):FireServer()
+            task.wait(1.2)
+            task.spawn(function()
+      game:GetService("ReplicatedStorage"):WaitForChild("CloudFrameShared"):WaitForChild("DataStreams"):WaitForChild("FishBiting"):InvokeServer()
+      end)
+task.wait(2)
+      game:GetService("ReplicatedStorage"):WaitForChild("CloudFrameShared"):WaitForChild("DataStreams"):WaitForChild("FishCaught"):FireServer()
+         elseif  getfenv().fmethod  == "Method 2" then
+         repeat task.wait()
+if  game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Bobber.RopeConstraint.Length < 1 then
+           local chr = game.Players.LocalPlayer.Character
+              local Camera = workspace.Camera
+
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2,0, true, game, 1)
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2,0, false, game, 1)
+            warn("test")
+            wait(0.5)
+            end
+            until game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Bobber.RopeConstraint.Length > 1 
+         
+      task.wait(1)
+      repeat task.wait()
+     until #game:GetService("Players").LocalPlayer.PlayerGui.FishBubbles:GetChildren() > 1 or game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Bobber.RopeConstraint.Length < 1 
+     warn("done")
+                local Camera = workspace.Camera
+
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2,0, true, game, 1)
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2,0, false, game, 1)
+    print(test)
+            repeat task.wait()
+                            local Camera = workspace.Camera
+
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2,0, true, game, 1)
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2,0, false, game, 1)
+            wait(0.1)
+            until  game:GetService("Players").LocalPlayer.PlayerGui.Interface.Fishing.FishingMeter.Visible  or game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Bobber.RopeConstraint.Length < 1 
+            repeat task.wait()
+if game:GetService("Players").LocalPlayer.PlayerGui.Interface.Fishing.FishingMeter.Mover.Rotation < -17 and game:GetService("Players").LocalPlayer.PlayerGui.Interface.Fishing.FishingMeter.Visible then
+           local Camera = workspace.Camera
+
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2,0, true, game, 1)
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(Camera.ViewportSize.X/2,Camera.ViewportSize.Y/2,0, false, game, 1)
+            end
+        until game:GetService("Players").LocalPlayer.PlayerGui.Interface.Fishing.FishingMeter.Visible == false  or game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Bobber.RopeConstraint.Length < 1 
+      end
+      end
+end)
+example:AddToggle("Auto Collect Chests", function(state)
+   getfenv().chests = (state and true or false)
+   while getfenv().chests do
+      task.wait()
+      pcall(function()
+   for i,v in pairs(workspace:GetDescendants()) do
+      if v.ClassName == "ProximityPrompt" and v.Parent.Name == "HumanoidRootPart" and not v.Parent.Parent:GetAttribute("OpenParticlesType") and v.Enabled and v.ActionText == "Open" and getfenv().chests then
+      local timer = tick()
+         repeat task.wait()
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
+      fireproximityprompt(v)
+      until v.Enabled == false or getfenv().chests == false or tick()-time > 5
+   end
+   end
+end)
+end
+end)
+example:AddButton("Collect Chests[Server Hop]", function()
+      for i,v in pairs(workspace:GetDescendants()) do
+         if v.ClassName == "ProximityPrompt" and v.Parent ~= nil and v.Parent.Name == "HumanoidRootPart" and not v.Parent.Parent:GetAttribute("OpenParticlesType") and v.Enabled and v.ActionText == "Open"  then
+            local timer = tick()
+            repeat task.wait()
+                    local p,call =pcall(function()
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
+         fireproximityprompt(v)
+          end)
+         until v.Enabled == false or tick()-timer > 1.5
+     
+      end
+      end
+      queueonteleport(game:HttpGet("https://raw.githubusercontent.com/Marco8642/science/refs/heads/main/fishing%20server%20hop", true))
+      _G.playercount = 10
+local serverfound = nil
+    local cursor
+    placeId = game.PlaceId
+    repeat
+        local response = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. placeId .. "/servers/Public?sortOrder=Asc&limit=100" .. (cursor and "&cursor=" .. cursor or "")))
+        for _, v in pairs(response.data) do
+           if v.playing < _G.playercount  then
+           serverfound = v.id
+           print(v.playing)
+        end
+        end
+        cursor = response.nextPageCursor
+    until not cursor or serverfound ~= nil
+game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, serverfound, game.Players.LocalPlayer)
+   end)
+example:AddToggle("Auto Farm Mobs", function(state)
+_G.test = (state and true or false)
+while _G.test do
+   task.wait()
+   pcall(function()
+      local plr = game.Players.LocalPlayer.UserId
+for i,v in pairs(game:GetService("ReplicatedStorage").ToolsCache[plr]:GetChildren()) do
+    if v:GetAttribute("type") == "Spears" then
+spear = v.Name
+    end
+    end
+    for i,v in pairs(workspace:GetChildren()) do
+      if v.ClassName == "Model" and v:FindFirstChild("Hitbox") and _G.test  then
+   repeat wait()
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=v.PrimaryPart.CFrame*CFrame.new(0,0,20)   
+game:GetService("ReplicatedStorage").CloudFrameShared.DataStreams.SpearThrown:FireServer(spear,v.PrimaryPart.CFrame, v.PrimaryPart.Position, tonumber("1696341607.0"..math.random(100000,1000000)))
+game:GetService("ReplicatedStorage").CloudFrameShared.DataStreams.MonsterHit:FireServer(v, spear, true)
+task.wait(2)
+   until v.Health.Value == 0 or _G.test == false or v.Parent == nil
+      end
+      end
+   end)
+end
+end)
+example:AddToggle("Auto Sell [None Mutated]", function(state)
+getfenv().sellthem = (state and true or false)
+while getfenv().sellthem do
+   task.wait()
+   local plr = game:GetService("Players").LocalPlayer
+local plrgui = plr.PlayerGui
+local inven = plrgui.Interface.Inventory.Inventory
+local list = inven.Frame.Backpack.List.Container
+for i,v in pairs(list:GetDescendants()) do
+    if v:GetAttribute("size") ~= nil  and v:GetAttribute("mutation")== nil then
+      game:GetService("ReplicatedStorage").CloudFrameShared.DataStreams.processGameItemSold:InvokeServer("SellOne", "Fish", v.Parent.Parent.Parent.Parent.Parent.Name)
+
+end
+end
+local plr = game.Players.LocalPlayer.UserId
+for i2,v2 in pairs(game:GetService("ReplicatedStorage").ToolsCache[plr]:GetChildren()) do
+   if v2:GetAttribute("size") ~= nil  and v2:GetAttribute("mutation") == nil then
+     game:GetService("ReplicatedStorage").CloudFrameShared.DataStreams.processGameItemSold:InvokeServer("SellOne", "Fish", v2:GetAttribute("inventoryKey"))
+   end
+   end
+end
+end)
+example:AddToggle("Auto Sell Loot", function(state)
+_G.sell = (state and true or false)
+while _G.sell do
+game:GetService("ReplicatedStorage").CloudFrameShared.DataStreams.processGameItemSold:InvokeServer("SellEverything")
+wait(1)
+end
+end)
+example:AddToggle("Auto Collect Loot", function(state)
+   _G.loot = (state and true or false)
+   while _G.loot do
+      task.wait()
+      pcall(function()
+    for i,v in pairs(game:GetService("Workspace").DroppedItems:GetChildren()) do
+      if v.ClassName == "Model" and v.PrimaryPart ~= nil and v.PrimaryPart.Transparency ~= 1 then
+      repeat task.wait()
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.PrimaryPart.CFrame
+      until v.Parent == nil or v.PrimaryPart == nil or _G.loot == false
+       end
+      end
+      end)
+      end
+   end)
+   example:AddToggle("Anti-Mob Damage", function(state)
+      _G.damage = (state and true or false)
+      while _G.damage do
+          wait()
+          pcall(function()
+      for i,v in pairs(workspace:GetChildren()) do
+          if v.ClassName == "Model" and v:FindFirstChild("Hitbox") and v.Hitbox:FindFirstChild("TouchInterest") then
+         v.Hitbox:FindFirstChild("TouchInterest"):Destroy()
+      task.wait()
+         end
+          end
+         end)
+      end
+   end)
