@@ -157,31 +157,27 @@
         Name = "Close",
         ZIndex = 2,
         BackgroundTransparency = 1,
-        Position = UDim2.new(1, -50, 0, 0), -- Letak di sebelah kiri minimize
+        Position = UDim2.new(1, -50, 0, 0),
         Size = UDim2.new(0, 25, 1, 0),
         Text = "X",
         TextSize = 17,
-        TextColor3 = Color3.fromRGB(255, 25, 25), -- Warna merah
+        TextColor3 = Color3.fromRGB(255, 25, 25),
         Font = Enum.Font.FredokaOne,
         Parent = window.frame,
     });
 
     closeButton.MouseButton1Click:Connect(function()
+
         if library.gui then
             library.gui:Destroy()
+            library.gui = nil
         end
-        window.frame:Destroy()
 
-        -- **Hentikan semua script aktif**
         for _, connection in pairs(getconnections(game:GetService("RunService").Heartbeat)) do
             connection:Disconnect()
         end
         for _, event in pairs(getconnections(game:GetService("UserInputService").InputBegan)) do
             event:Disconnect()
-        end
-        local env = getfenv()
-        for k in pairs(env) do
-            env[k] = nil
         end
     end)
    
