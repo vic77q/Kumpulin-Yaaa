@@ -135,7 +135,7 @@
             Name = 'Toggle';
             ZIndex = 2,
             BackgroundTransparency = 1;
-            Position = UDim2.new(1, -60, 0, 0),
+            Position = UDim2.new(1, -50, 0, 0),
             Size = UDim2.new(0, 25, 1, 0),
             Text = "-",
             TextSize = 17,
@@ -157,7 +157,7 @@
         Name = "Close",
         ZIndex = 2,
         BackgroundTransparency = 1,
-        Position = UDim2.new(1, -35, 0, 0),
+        Position = UDim2.new(1, -25, 0, 0),
         Size = UDim2.new(0, 25, 1, 0),
         Text = "X",
         TextSize = 17,
@@ -182,7 +182,7 @@
     end)
    
         self:Create("TextLabel", {
-            Size = UDim2.new(1, 0, 1, 0),
+            Size = UDim2.new(1, 180, 1, 0),
             BackgroundTransparency = 1;
             BorderSizePixel = 0;
             TextColor3 = options.txtcolor,
@@ -192,6 +192,8 @@
             Text = options.text or "window",
             Name = "Window",
             Parent = window.frame,
+            TextScaled = false,
+            ClipsDescendants = true,
         })
    
         do
